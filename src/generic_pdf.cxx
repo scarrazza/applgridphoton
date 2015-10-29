@@ -80,7 +80,7 @@ void generic_pdf::initialise(const std::string& filename) {
   
   currentprocess=-1;
   currentsubprocess=-1;
-  m_nQuark=6; // offset to go from 0,..,13 to  -6,..,0.,..,6
+  m_nQuark=6; // offset to go from 0,..,14 to  -6,..,0.,..,7
 
 #if 0
   std::vector<std::string> names;
@@ -97,19 +97,20 @@ void generic_pdf::initialise(const std::string& filename) {
   names.push_back("charm");
   names.push_back("beauty");
   names.push_back("top");
+  names.push_back("photon");
  
-  std::string names[13] = { "topbar", "beautybar", "charmbar", "strangebar", "upbar", "downbar", 
+  std::string names[14] = { "topbar", "beautybar", "charmbar", "strangebar", "upbar", "downbar", 
 			    "gluon", 
-			    "down", "up", "strange" "charm", "beauty", "top" };
+			    "down", "up", "strange" "charm", "beauty", "top", "photon" };
 #endif
 
-  std::string _names[13] = { "tbar", "bbar", "cbar", "sbar", "ubar", "dbar", 
-		             "g", "d", "u", "s", "c", "b", "t" };
+  std::string _names[14] = { "tbar", "bbar", "cbar", "sbar", "ubar", "dbar", 
+		             "g", "d", "u", "s", "c", "b", "t", "pht" };
 
  
   std::string* names = (&_names[0])+6; /// so we can use -6..6 indexing
 
-  for (int i=-m_nQuark; i<=m_nQuark; i++) {
+  for (int i=-m_nQuark; i<=m_nQuark+1; i++) {
     flavname[i] = names[i];
     iflavour[names[i]]=i;    
     if (m_debug)
@@ -128,13 +129,13 @@ void generic_pdf::initialise(const std::string& filename) {
   
   flavourtype.clear();
   int ifltype = -99;  
-  for(int ifl = -m_nQuark; ifl <= m_nQuark; ifl++) {
+  for(int ifl = -m_nQuark; ifl <= m_nQuark+1; ifl++) {
     if ((ifl== 2)||(ifl== 4)||(ifl== 6))  ifltype =  2; 
     if ((ifl==-2)||(ifl==-4)||(ifl==-6))  ifltype = -2; 
     if ((ifl== 1)||(ifl== 3)||(ifl== 5))  ifltype =  1;
     if ((ifl==-1)||(ifl==-3)||(ifl==-5))  ifltype = -1;
     
-    if (ifl==0) ifltype= 0;
+    if (ifl==0 || ifl==7) ifltype= 0;
     flavourtype[ifl]=ifltype;
   }
 
@@ -202,7 +203,7 @@ void  generic_pdf::evaluate(const double* fA, const double* fB, double* H) {
   
   if ( m_ckmflag ) {
     /// do we need the ckm matrix ??
-    for(int i=-6; i <=6; i++) {
+    for(int i=-6; i <=7; i++) {
       int j=flavourtype[i];
       if (j==0) continue;
       pdfA[j] += fA[i]*_ckmsum[j];
@@ -218,7 +219,7 @@ void  generic_pdf::evaluate(const double* fA, const double* fB, double* H) {
     }
   }
   else { 
-    for(int i=-6; i <=6; i++) {
+    for(int i=-6; i <=7; i++) {
       int j=flavourtype[i];
       if (j==0) continue;
       pdfA[j] += fA[i];
@@ -395,8 +396,8 @@ void generic_pdf::Print_ckm() {
   if (m_ckm2.size()<=0) return;
 
   //
-  for ( int i=0 ; i<13 ; i++ ) {
-    for ( int j=0 ; j<13 ; j++ ) {
+  for ( int i=0 ; i<14 ; i++ ) {
+    for ( int j=0 ; j<14 ; j++ ) {
      if (m_ckm2[i][j]!=0)
       std::cout << " ckm[" << i << "][" << j << "]\t =\t " << m_ckm2[i][j] << std::endl;
     }

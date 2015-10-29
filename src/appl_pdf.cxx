@@ -154,7 +154,7 @@ bool appl_pdf::create_map() {
 void appl_pdf::make_ckm( bool Wp ) { 
   
   // std::cout << "make_ckm() initialising" << std::endl;
-  std::vector<std::vector<double> > _ckm2(13, std::vector<double>(13,0));
+  std::vector<std::vector<double> > _ckm2(14, std::vector<double>(14,0));
   
   if ( Wp ) { 
     
@@ -197,21 +197,6 @@ void appl_pdf::make_ckm( bool Wp ) {
  
   setckm2( _ckm2 );
 
-  /*
-  m_ckmsum = std::vector<double>(m_ckm2.size(),0);
-  for ( unsigned i=0 ; i<m_ckm2.size() ; i++ ) { 
-    for ( unsigned j=0 ; j<m_ckm2[i].size() ; j++ ) m_ckmsum[i] += m_ckm2[i][j]; 
-  }
-  */
-
-  /*
-  for ( int i=0 ; i<13 ; i++ ) {
-    for ( int j=0 ; j<13 ; j++ ) {
-      if (m_ckm2[i][j]!=0)
-	std::cout << " ckm[" << i << "][" << j << "]\t =\t " << m_ckm2[i][j] << std::endl;
-    }
-  }
-  */
 }
 
 
@@ -226,7 +211,7 @@ void appl_pdf::setckm( const std::vector<std::vector<double> >& ckm ) {
   
   if ( m_ckmcharge==0 ) return;
   
-  std::vector<std::vector<double> > ckm2( 13, std::vector<double>(13,0) );
+  std::vector<std::vector<double> > ckm2( 14, std::vector<double>(14,0) );
   for ( int iU=0 ; iU<3 ; iU++ ) {
     for ( int iD=0 ; iD<3 ; iD++ ) {
 

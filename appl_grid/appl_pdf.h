@@ -170,7 +170,7 @@ protected:
 
   // ckm matrices
   std::vector<double>               m_ckmsum;
-  std::vector<std::vector<double> > m_ckm2; /// squared 13x13 matrix
+  std::vector<std::vector<double> > m_ckm2; /// squared 14x14 matrix
   std::vector<std::vector<double> > m_ckm;  /// simple 3x3
 
   /// some strings for more useful name if required

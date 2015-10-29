@@ -37,7 +37,7 @@ private:
   typedef void (*pdffunction)(const double& , const double&, double* );
 
   /// for fast copy 
-  struct partons { double p[13]; };
+  struct partons { double p[14]; };
 
 public:
 

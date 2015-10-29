@@ -623,19 +623,19 @@ void appl::igrid::setuppdf(double (*alphas)(const double&),
     
     // pdf table
     m_fg1[i] = new double*[n_y1];
-    for ( int j=0 ; j<n_y1 ; j++ ) m_fg1[i][j] = new double[13];
+    for ( int j=0 ; j<n_y1 ; j++ ) m_fg1[i][j] = new double[14];
     if ( !isSymmetric() && !isDISgrid() ) { 
       m_fg2[i] = new double*[n_y2];
-      for ( int j=0 ; j<n_y2 ; j++ ) m_fg2[i][j] = new double[13];   
+      for ( int j=0 ; j<n_y2 ; j++ ) m_fg2[i][j] = new double[14];   
     }    
     
     // splitting function table
     if ( nloop==1 && fscale_factor!=1 ) { 
       m_fsplit1[i] = new double*[n_y1];
-      for ( int j=0 ; j<n_y1 ; j++ ) m_fsplit1[i][j] = new double[13];
+      for ( int j=0 ; j<n_y1 ; j++ ) m_fsplit1[i][j] = new double[14];
       if ( !isSymmetric() && !isDISgrid() ) { 
 	m_fsplit2[i] = new double*[n_y2];
-	for ( int j=0 ; j<n_y2 ; j++ ) m_fsplit2[i][j] = new double[13];   
+	for ( int j=0 ; j<n_y2 ; j++ ) m_fsplit2[i][j] = new double[14];   
       }
     }
   }  
@@ -689,9 +689,9 @@ void appl::igrid::setuppdf(double (*alphas)(const double&),
       if ( scale_beams ) { 
 	x *= beam_scale;
 	if ( x>=1 ) { 
-	  for ( int ip=0 ; ip<13 ; ip++ ) m_fg1[itau][iy][ip]=0; 
+	  for ( int ip=0 ; ip<14 ; ip++ ) m_fg1[itau][iy][ip]=0; 
 	  if ( nloop==1 && fscale_factor!=1 ) { 
-	    for ( int ip=0 ; ip<13 ; ip++ ) m_fsplit1[itau][iy][ip] = 0;
+	    for ( int ip=0 ; ip<14 ; ip++ ) m_fsplit1[itau][iy][ip] = 0;
 	  }
 	  continue; 
 	}    
@@ -700,14 +700,14 @@ void appl::igrid::setuppdf(double (*alphas)(const double&),
       pdf0->evaluate(x, fscale_factor*Q, m_fg1[itau][iy]);
       
       double invx = 1/x;
-      for ( int ip=0 ; ip<13 ; ip++ ) m_fg1[itau][iy][ip] *= invx;
-      if ( m_reweight ) for ( int ip=0 ; ip<13 ; ip++ ) m_fg1[itau][iy][ip] *= fun;
+      for ( int ip=0 ; ip<14 ; ip++ ) m_fg1[itau][iy][ip] *= invx;
+      if ( m_reweight ) for ( int ip=0 ; ip<14 ; ip++ ) m_fg1[itau][iy][ip] *= fun;
       
       // splitting function table
       if ( nloop==1 && fscale_factor!=1 ) { 
 	splitting(x, fscale_factor*Q, m_fsplit1[itau][iy]);
-	for ( int ip=0 ; ip<13 ; ip++ ) m_fsplit1[itau][iy][ip] *= invx;
-	if ( m_reweight ) for ( int ip=0 ; ip<13 ; ip++ ) m_fsplit1[itau][iy][ip] *= fun;
+	for ( int ip=0 ; ip<14 ; ip++ ) m_fsplit1[itau][iy][ip] *= invx;
+	if ( m_reweight ) for ( int ip=0 ; ip<14 ; ip++ ) m_fsplit1[itau][iy][ip] *= fun;
       }
     }
   }
@@ -737,9 +737,9 @@ void appl::igrid::setuppdf(double (*alphas)(const double&),
 	if ( scale_beams ) { 
 	  x *= beam_scale;	
 	  if ( x>=1 ) { 
-	    for ( int ip=0 ; ip<13 ; ip++ ) m_fg2[itau][iy][ip]=0; 
+	    for ( int ip=0 ; ip<14 ; ip++ ) m_fg2[itau][iy][ip]=0; 
 	    if ( nloop==1 && fscale_factor!=1 ) { 
-	      for ( int ip=0 ; ip<13 ; ip++ ) m_fsplit2[itau][iy][ip] = 0;
+	      for ( int ip=0 ; ip<14 ; ip++ ) m_fsplit2[itau][iy][ip] = 0;
 	    }
 	    continue; 
 	  }
@@ -748,14 +748,14 @@ void appl::igrid::setuppdf(double (*alphas)(const double&),
 	pdf1->evaluate(x, fscale_factor*Q, m_fg2[itau][iy]);
 	
 	double invx = 1/x;
-	for ( int ip=0 ; ip<13 ; ip++ ) m_fg2[itau][iy][ip] *= invx;
-	if ( m_reweight ) for ( int ip=0 ; ip<13 ; ip++ ) m_fg2[itau][iy][ip] *= fun;      
+	for ( int ip=0 ; ip<14 ; ip++ ) m_fg2[itau][iy][ip] *= invx;
+	if ( m_reweight ) for ( int ip=0 ; ip<14 ; ip++ ) m_fg2[itau][iy][ip] *= fun;      
 	
 	// splitting functions
 	if ( nloop==1 && fscale_factor!=1 ) { 
 	  splitting(x, fscale_factor*Q, m_fsplit2[itau][iy]);
-	  for ( int ip=0 ; ip<13 ; ip++ ) m_fsplit2[itau][iy][ip] *= invx;
-	  if ( m_reweight ) for ( int ip=0 ; ip<13 ; ip++ ) m_fsplit2[itau][iy][ip] *= fun;
+	  for ( int ip=0 ; ip<14 ; ip++ ) m_fsplit2[itau][iy][ip] *= invx;
+	  if ( m_reweight ) for ( int ip=0 ; ip<14 ; ip++ ) m_fsplit2[itau][iy][ip] *= fun;
 	}
       }
 
@@ -779,7 +779,7 @@ void igrid::pdfinterp(double x, double Q2, double* f)
 
   //  double rint = 0.;
 
-  for ( int i=0 ; i<13 ; i++ ) f[i]=0.;
+  for ( int i=0 ; i<14 ; i++ ) f[i]=0.;
 
   double fI_factor;
 
@@ -793,7 +793,7 @@ void igrid::pdfinterp(double x, double Q2, double* f)
 
       fI_factor=fI(i1, m_yorder, u_y1) * fI(i3, m_tauorder, u_tau);
                     
-      for ( int ip1=0 ; ip1<13 ; ip1++ ) { 
+      for ( int ip1=0 ; ip1<14 ; ip1++ ) { 
 	f[ip1] += fI_factor*m_fg1[k3+i3][std::abs(k1+i1)][ip1];     
       }
     }
@@ -801,7 +801,7 @@ void igrid::pdfinterp(double x, double Q2, double* f)
    
   double fun = weightfun(x); 
 
-  if ( m_reweight ) for ( int ip1=0 ; ip1<13 ; ip1++ ) f[ip1] /= fun;
+  if ( m_reweight ) for ( int ip1=0 ; ip1<14 ; ip1++ ) f[ip1] /= fun;
 
 }
 #endif

@@ -145,8 +145,8 @@ lumi_pdf::lumi_pdf(const std::string& s, const std::vector<combination>& combina
 
 void lumi_pdf::create_lookup() { 
   if ( m_lookup.size()==0 ) { 
-    /// create a 13 x 13 lookup table 
-    m_lookup = std::vector<std::vector<int> >(13, std::vector<int>(13, -1) ); 
+    /// create a 14 x 14 lookup table 
+    m_lookup = std::vector<std::vector<int> >(14, std::vector<int>(14, -1) ); 
     for ( unsigned i=size() ; i-- ; ) { 
       const combination& c = m_combinations[i];
       for ( unsigned j=c.size() ; j-- ; ) m_lookup[ c[j].first+6 ][ c[j].second+6 ] = i;

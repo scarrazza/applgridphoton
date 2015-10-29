@@ -68,7 +68,12 @@ private:
   void construct(const std::vector<int>& v);
 
   /// remap from the pdg to lhapdf code
-  int remap(int i) { return ( i==21 ? 0 : i ); } 
+  int remap(int i) 
+  {
+    if (i == 21) return 0;
+    else if (i == 22) return 7;
+    else return i;		   
+  } 
 
 private:
 

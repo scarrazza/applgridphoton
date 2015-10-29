@@ -392,16 +392,16 @@ appl::grid::grid(const std::string& filename, const std::string& dirname)  :
 
     std::cout << "grid::grid() read ckm matrices" << std::endl;
     
-    /// try 13x13 squared ckm matrix 
+    /// try 14x14 squared ckm matrix 
 
     TVectorT<double>* ckm2flat=(TVectorT<double>*)gridfilep->Get((dirname+"/CKM2").c_str());
 
     if ( ckm2flat ) { 
       if ( ckm2flat->GetNrows()>0 ) { 
-	_ckm2 = std::vector<std::vector<double> >(13, std::vector<double>(13) );
+	_ckm2 = std::vector<std::vector<double> >(14, std::vector<double>(14) );
       
-	for ( int ic=0 ; ic<13 ; ic++ ) { 
-	  for ( int id=0 ; id<13 ; id++ ) _ckm2[ic][id] = (*ckm2flat)(ic*13+id); 
+	for ( int ic=0 ; ic<14 ; ic++ ) { 
+	  for ( int id=0 ; id<14 ; id++ ) _ckm2[ic][id] = (*ckm2flat)(ic*14+id); 
 	}
       }  
     }

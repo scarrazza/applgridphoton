@@ -79,7 +79,7 @@ public:
     } 
     else { 
       /// not in cache, call pdf function 
-      static std::vector<double> _xf(13);
+      static std::vector<double> _xf(14);
 
       _pdf( x, Q2, &_xf[0] ); 
 

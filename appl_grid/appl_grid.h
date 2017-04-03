@@ -56,7 +56,7 @@ public:
   class exception : public std::exception { 
   public:
     exception(const std::string& s) { std::cerr << what() << " " << s << std::endl; }; 
-    exception(std::ostream& s)      { std::cerr << what() << " " << s << std::endl; }; 
+    exception(std::ostream& s)      { std::cerr << std::endl; };
     virtual const char* what() const throw() { return "appl::grid::exception"; }
   };
 

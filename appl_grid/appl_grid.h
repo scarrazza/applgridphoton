@@ -16,6 +16,10 @@
 //        should be purely an internal grid issue of no concern for the 
 //        user.
 
+#ifndef __APPL_PHOTON
+#define __APPL_PHOTON
+#endif
+
 #ifndef __APPL_GRID_H
 #define __APPL_GRID_H
 

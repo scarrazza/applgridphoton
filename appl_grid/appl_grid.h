@@ -16,6 +16,10 @@
 //        should be purely an internal grid issue of no concern for the 
 //        user.
 
+#ifndef __APPL_PHOTON
+#define __APPL_PHOTON
+#endif
+
 #ifndef __APPL_GRID_H
 #define __APPL_GRID_H
 
@@ -56,7 +60,7 @@ public:
   class exception : public std::exception { 
   public:
     exception(const std::string& s) { std::cerr << what() << " " << s << std::endl; }; 
-    exception(std::ostream& s)      { std::cerr << what() << " " << s << std::endl; }; 
+    exception(std::ostream& s)      { std::cerr << std::endl; };
     virtual const char* what() const throw() { return "appl::grid::exception"; }
   };
 

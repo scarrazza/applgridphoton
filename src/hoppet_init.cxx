@@ -36,7 +36,8 @@ hoppet_init::hoppet_init( double Qmax ) {
   /// NB: these parameters (except Qmax) should all be the default
   ///     parameters from hoppet 
   int MSbar = 1;
-  hoppetstartextended_( 12.0, dy, 1.0, Qmax, 0.25*dy, nloop, -6,  MSbar );
+  // NNPDF modification, ymax from 12 to 13 to support some of our applgrids
+  hoppetstartextended_( 13.0, dy, 1.0, Qmax, 0.25*dy, nloop, -6,  MSbar );
 #else
   std::cerr << " hoppet_init::hoppet_init() called but hoppet not included" << std::endl;
   exit(0);

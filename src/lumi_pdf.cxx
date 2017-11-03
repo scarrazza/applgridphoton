@@ -235,6 +235,6 @@ void lumi_pdf::write(const std::string& filename) const {
 // std::string lumi_pdf::summary(std::ostream& s=std::cout) const { 
 std::string lumi_pdf::summary() const { 
   std::stringstream s;
-  s << "lumi_pdf::lumi_pdf() " << s << "\tsize " << m_combinations.size() << " lookup size " << m_lookup.size() << " " << this; 
+  s << "lumi_pdf::lumi_pdf() " << s.str() << "\tsize " << m_combinations.size() << " lookup size " << m_lookup.size() << " " << this; 
   return s.str();
 }

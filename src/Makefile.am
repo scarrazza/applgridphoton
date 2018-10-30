@@ -39,8 +39,8 @@ else
 endif
 
 
-FRTLIB   = $(shell gfortran -print-file-name=libgfortran.a)
-FRTLLIB  = -L$(subst /libgfortran.a, ,$(FRTLIB) ) -lgfortran 
+#FRTLIB   = $(shell gfortran -print-file-name=libgfortran.a)
+FRTLLIB  = -lgfortran 
 
 
 bin_PROGRAMS = applgrid-combine

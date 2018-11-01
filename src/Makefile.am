@@ -42,14 +42,6 @@ endif
 #FRTLIB   = $(shell gfortran -print-file-name=libgfortran.a)
 FRTLLIB  = -lgfortran 
 
-
-bin_PROGRAMS = applgrid-combine
-applgrid_combine_SOURCES = combine.cxx
-applgrid_combine_LDADD   = libAPPLgrid.la
-applgrid_combine_LDFLAGS = $(ROOTARCH) $(ROOTLIBS) $(HOPPETLIBS) $(FRTLLIB) $(FRTLIB) 
-
-
-
 lib_LTLIBRARIES= libAPPLgrid.la libfAPPLgrid.la 
 libAPPLgrid_la_SOURCES = \
 	appl_grid.cxx		appl_igrid.cxx       fastnlo.cxx \
@@ -74,7 +66,6 @@ library_includedir=$(includedir)/appl_grid
 
 library_include_HEADERS=../appl_grid/*.h
 
-
 # GSLLIBS=$(shell gsl-config --libs)
 # WDIR = $(shell pwd)
 
@@ -88,6 +79,12 @@ AM_FCFLAGS = -c
 AM_FCLIBS  = -lg2c
 AM_SOFLAGS = -shared
 CINT       = rootcint
+
+bin_PROGRAMS = applgrid-combine
+applgrid_combine_SOURCES = combine.cxx
+applgrid_combine_LDADD   = libAPPLgrid.la
+applgrid_combine_LDFLAGS = $(ROOTARCH) $(ROOTLIBS) $(HOPPETLIBS) $(FRTLLIB) $(FRTLIB) 
+
 
 clean-local:
 	rm -rf *.o *.lo *Dict*

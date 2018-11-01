@@ -45,8 +45,8 @@ FRTLLIB  = -lgfortran
 
 bin_PROGRAMS = applgrid-combine
 applgrid_combine_SOURCES = combine.cxx
-applgrid_combine_LDADD   = 
-applgrid_combine_LDFLAGS = $(ROOTARCH) -L. -lAPPLgrid $(ROOTLIBS) $(HOPPETLIBS) $(FRTLLIB) $(FRTLIB) 
+applgrid_combine_LDADD   = libAPPLgrid.la
+applgrid_combine_LDFLAGS = $(ROOTARCH) $(ROOTLIBS) $(HOPPETLIBS) $(FRTLLIB) $(FRTLIB) 
 
 
 

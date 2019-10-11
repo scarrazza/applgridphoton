@@ -25,7 +25,11 @@ class fastnlo {
   
 public:
   
-  fastnlo(const std::string& filename ); 
+  fastnlo(const std::string& filename) : m_manage_grids(true) {
+
+    readgrid(filename);
+
+  }
   
   virtual ~fastnlo() { 
     if ( m_manage_grids ) { 
@@ -40,6 +44,11 @@ public:
   const appl::grid* operator[](int i) const { return m_grid[i]; }
 
   void manageGrids(bool b=true) { m_manage_grids=b; }  
+
+  void readgrid( const std::string& filename );
+  void constructv1( const std::string& filename );
+  void constructv2( const std::string& filename );  
+
 
 private:
   

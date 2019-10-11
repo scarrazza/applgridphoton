@@ -58,7 +58,8 @@ libAPPLgrid_la_SOURCES = \
 	TFileString.cxx		TFileStringDict.cxx  \
 	TFileVector.cxx		TFileVectorDict.cxx  \
 	integral.cxx \
-	*.h
+	fastnlov1.cxx fastnlov2.cxx speaker.cc fastNLOTools.cc \
+	*.h	
 
 libfAPPLgrid_la_SOURCES = fappl_grid.cxx fappl_fitter.cxx
 
